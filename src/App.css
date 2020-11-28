@@ -12,10 +12,40 @@ body {
   padding: 10px;
 }
 
+.my-sm {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .red-background {
   background-color: red;
 }
 
 .white {
   color: white;
+}
+
+.card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 14px;
+  border: #8f8f8f dashed 1px;
+}
+
+.img-rounded {
+  border-radius: 50%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+}
+
+.btn-dark {
+  background-color: #333;
 }
