@@ -25,7 +25,21 @@ body {
   color: white;
 }
 
+.container {
+  max-width: 1100px;
+  /* border: blue 1px solid; */
+  margin: auto;
+  /* overflow: hidden; */
+}
+
+.users-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 16px;
+}
+
 .card {
+  /* display: inline-block; */
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 14px;

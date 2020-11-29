@@ -27,10 +27,12 @@ class Users extends Component {
 
   render() {
     return (
-      <div>
+      <div className="users-grid">
+        
         {this.state.users.map(user => (
           <UserItem user={user}/>
         ))}
+       
       </div>
     )
   }
