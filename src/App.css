@@ -63,3 +63,9 @@ body {
 .btn-dark {
   background-color: #333;
 }
+
+.loading-spinner {
+  width: 200px;
+  margin: auto;
+  display: block;
+}
