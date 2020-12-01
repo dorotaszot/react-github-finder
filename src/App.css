@@ -58,14 +58,33 @@ body {
   display: inline-block;
   text-decoration: none;
   color: #fff;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:focus {
+  outline: none;
+  border: none;
 }
 
 .btn-dark {
   background-color: #333;
 }
 
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
 .loading-spinner {
   width: 200px;
   margin: auto;
   display: block;
+}
+
+input {
+  display: block;
+  width: 100%;
+  font-size: 16px;
 }

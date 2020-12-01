@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Users from './Components/users/Users';
+import Search from './Components/users/Search';
 import './App.css';
 import Navbar from './Components/layout/Navbar';
 import axios from 'axios';
@@ -24,6 +25,7 @@ state = {
       <div className="App">
         <Navbar />
         <div className="container">
+          <Search />
           <Users loading={this.state.loading} users={this.state.users}/>
         </div>
       </div>
