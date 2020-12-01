@@ -15,9 +15,15 @@ state = {
     this.setState({loading: true});
 
     const res = await axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
-    console.log(res.data);
+    // console.log(res.data);
 
     this.setState({users: res.data, loading: false});
+  }
+
+  searchUsers = async (text) => {
+    const res = await axios.get(`https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+    
+    this.setState({users: res.data.items, loading: false});
   }
 
   render() {
@@ -25,7 +31,7 @@ state = {
       <div className="App">
         <Navbar />
         <div className="container">
-          <Search />
+          <Search searchUsers={this.searchUsers}/>
           <Users loading={this.state.loading} users={this.state.users}/>
         </div>
       </div>

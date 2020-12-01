@@ -7,7 +7,7 @@ state = {
 
 onSubmit = (e) => {
   e.preventDefault();
-  console.log(this.state.text);
+  this.props.searchUsers(this.state.text);
 }
 
 onChange = (e) => {
