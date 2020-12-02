@@ -72,6 +72,10 @@ body {
   background-color: #333;
 }
 
+.btn-light {
+  background-color: #eee;
+}
+
 .btn-block {
   display: block;
   width: 100%;
