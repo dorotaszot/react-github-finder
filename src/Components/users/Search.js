@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Search extends Component {
 state = {
@@ -16,14 +17,16 @@ onChange = (e) => {
 }
 
   render() {
+  const { showClear, clearSearch } = this.props; 
+
     return (
       <div>
         <form onSubmit={this.onSubmit}>
           <input type="text" name="text" placeholder="Search Users..." className="my-sm p-sm" value={this.state.text} onChange={this.onChange}/>
           <input type="submit" value="Search" className="btn btn-dark btn-block p-sm" />
         </form>
-        {this.props.showClear && 
-          <button className="btn btn-block btn-light p-sm my-sm" style={{ color: '#000'}} onClick={this.props.clearSearch}>
+        {showClear && 
+          <button className="btn btn-block btn-light p-sm my-sm" style={{ color: '#000'}} onClick={clearSearch}>
             Clear
           </button>
         }
@@ -31,6 +34,12 @@ onChange = (e) => {
       </div>
     )
   }
+}
+
+Search.propTypes = {
+  searchUsers: PropTypes.func.isRequired,
+  clearSearch: PropTypes.func.isRequired,
+  showClear: PropTypes.bool.isRequired
 }
 
 export default Search
