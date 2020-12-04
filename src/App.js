@@ -3,13 +3,15 @@ import Users from './Components/users/Users';
 import Search from './Components/users/Search';
 import './App.css';
 import Navbar from './Components/layout/Navbar';
+import Alert from './Components/layout/Alert';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
 class App extends Component {
   state = {
     users: [],
-    loading: false
+    loading: false,
+    alert: null
   }
 
   // async componentDidMount() {
@@ -33,6 +35,13 @@ class App extends Component {
    this.setState({ users: [], loading: false }); 
   }
 
+  setAlert = (msg, type) => {
+    this.setState({ alert: {msg, type} });
+    setTimeout(() => {
+      this.setState({ alert: null })
+    }, 3000);
+  }
+
   render() {
   const { users, loading } = this.state;
 
@@ -40,10 +49,13 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <div className="container">
+          <Alert alert={this.state.alert}/>
           <Search searchUsers={this.searchUsers} 
           clearSearch={this.clearSearch} 
-          showClear={users.length > 0 ? true : false}/>
+          showClear={users.length > 0 ? true : false}
+          setAlert={this.setAlert} />
           <Users loading={loading} users={users}/>
+
         </div>
       </div>
     );
