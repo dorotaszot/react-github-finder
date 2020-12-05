@@ -8,6 +8,24 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nav-ul {
+  display: flex;
+  list-style: none;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #fff;
+  padding-right: 15px;
+}
+
 .p-sm {
   padding: 10px;
 }

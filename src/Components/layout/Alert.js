@@ -6,6 +6,7 @@ const Alert = ( { alert } ) => {
     <div className={`alert ${alert.type} p-sm my-sm white`}>
       {alert.msg}
     </div>
+   
   )
   )}
 
