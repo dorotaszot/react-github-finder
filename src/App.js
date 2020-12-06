@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Users from './Components/users/Users';
+import User from './Components/users/User';
 import Search from './Components/users/Search';
 import './App.css';
 import Navbar from './Components/layout/Navbar';
@@ -12,6 +13,7 @@ import PropTypes from 'prop-types';
 class App extends Component {
   state = {
     users: [],
+    user: {},
     loading: false,
     alert: null
   }
@@ -27,10 +29,20 @@ class App extends Component {
 
   searchUsers = async (text) => {
     this.setState({loading: true});
+
     const res = await axios.get(`https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
     
-    console.log(res);
+    // console.log(res);
     this.setState({users: res.data.items, loading: false});
+  }
+
+  getUser = async (username) => {
+    this.setState({loading: true});
+
+    const res = await axios.get(`https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+
+    this.setState({user: res.data, loading: false});
+    console.log(res);
   }
 
   clearSearch = () => {
@@ -45,14 +57,14 @@ class App extends Component {
   }
 
   render() {
-  const { users, loading } = this.state;
+  const { users, loading, user, alert } = this.state;
 
     return (
       <Router>
       <div className="App">
         <Navbar />
         <div className="container">
-        <Alert alert={this.state.alert}/>
+        <Alert alert={alert}/>
 
             <Switch> 
               <Route exact path ='/' render={props => (
@@ -66,6 +78,9 @@ class App extends Component {
               )} />
             </Switch>
             <Route exact path='/about' component={About} />
+            <Route exact path='/user/:login' render= { props => (
+              <User {...props} user={user} getUser={this.getUser} loading={loading} />
+            )} />
         </div>
       </div>
       </Router>
