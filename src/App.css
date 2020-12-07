@@ -35,6 +35,11 @@ nav {
   margin-bottom: 10px;
 }
 
+.mx-sm {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
 .red-background {
   background-color: red;
 }
@@ -43,8 +48,20 @@ nav {
   background-color: #8f8f8f;
 }
 
+.black-background {
+  background-color: #000;
+}
+
 .white {
   color: white;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
 }
 
 .container {
@@ -66,6 +83,25 @@ nav {
   margin-bottom: 10px;
   padding: 14px;
   border: #8f8f8f dashed 1px;
+}
+
+.user-details-wrapper {
+  display: flex;
+}
+
+.user-card-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.user-card-right {
+  display: flex;
+  flex-direction: column;
+
+  width: 50%;
 }
 
 .img-rounded {
