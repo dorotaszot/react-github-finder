@@ -31,14 +31,42 @@ class User extends Component {
             <div className="user-card-right">
               {bio && (
                 <Fragment>
-                  <h3>Bio:</h3>
+                  <p className='my-sm'>Bio: </p>
                   <p>{bio}</p>
                 </Fragment>
               )}
               <a className='btn black-background p-sm my-sm' href={html_url}>Visit Github Profile</a>
+              <ul>
+                <li className='my-sm'>
+                  {login && 
+                    <Fragment>
+                      Username: {login}
+                    </Fragment>}
+                </li>
+                <li className='my-sm'>
+                  {company && 
+                    <Fragment>
+                      Company: {company}
+                    </Fragment>}
+                </li>
+                <li className='my-sm'>
+                  {blog && 
+                    <Fragment>
+                      Website: <a href={blog}>{blog}</a>
+                    </Fragment>}
+                </li>
+              </ul>
             </div>
           </div>
         </Fragment>
+        <div className="card badges-wrap">
+          <div className="badge light-background">Followers: {followers}</div>
+          <div className="badge green-background">Following: {following}</div>
+          <div className="badge black-background">Public Repos: {public_repos}</div>
+          <div className="badge red-background">Public Gists: {public_gists}</div>
+
+
+        </div>
       </div>
       
     )

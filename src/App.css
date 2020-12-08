@@ -52,6 +52,10 @@ nav {
   background-color: #000;
 }
 
+.green-background {
+  background-color: green;
+}
+
 .white {
   color: white;
 }
@@ -98,10 +102,10 @@ nav {
 }
 
 .user-card-right {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
 
-  width: 50%;
+  width: 50%; */
 }
 
 .img-rounded {
@@ -153,4 +157,25 @@ input {
 
 .alert {
   width: 100%;
+}
+
+/* .inline {
+  display: inline;
+} */
+
+ul {
+  list-style: none;
+}
+
+.badges-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.badge {
+  border-radius: 5px;
+  padding: 7px;
+  margin: 10px;
+  color: #fff;
 }
