@@ -1,19 +1,21 @@
 import React, { Fragment, Component } from 'react';
 import Spinner from '../layout/Spinner';
+import Repos from '../repos/Repos';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class User extends Component {
   componentDidMount() {
     this.props.getUser(this.props.match.params.login);
+    this.props.getUserRepos(this.props.match.params.login);
   }
   render() {
     const { login, location, hireable, html_url, avatar_url, name, blog, bio, company, public_repos, public_gists, following, followers } = this.props.user;
-    const {loading} = this.props;
+    const {loading, repos} = this.props;
 
     if (loading) <Spinner />
 
     return (
-      <div>
         <Fragment>
           <Link to='/' className='btn light-background p-sm my-sm mx-sm'>
             Back to search
@@ -58,19 +60,24 @@ class User extends Component {
               </ul>
             </div>
           </div>
-        </Fragment>
+        
         <div className="card badges-wrap">
           <div className="badge light-background">Followers: {followers}</div>
           <div className="badge green-background">Following: {following}</div>
           <div className="badge black-background">Public Repos: {public_repos}</div>
           <div className="badge red-background">Public Gists: {public_gists}</div>
-
-
         </div>
-      </div>
-      
+        <Repos repos={repos}/>
+      </Fragment>
     )
   }
+}
+
+User.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired,
+  getUser: PropTypes.func.isRequired,
+  getUserRepos: PropTypes.func.isRequired
 }
 
 export default User
