@@ -1,32 +1,27 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-class Search extends Component {
-state = {
-  text: ''
-}
+const Search = ({searchUsers, showClear, clearSearch, setAlert}) => {
+    const [text, setText] = useState('');
 
-onSubmit = (e) => {
-  e.preventDefault();
-  if(this.state.text === '') {
-    this.props.setAlert('Please enter something', 'light-background')
-  } else {
-    this.props.searchUsers(this.state.text);
-    this.setState({ text: '' });
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if(text === '') {
+      setAlert('Please enter something', 'light-background')
+    } else {
+      searchUsers(text);
+      setText('');
+    }
   }
-}
 
-onChange = (e) => {
-  this.setState({[e.target.name]: e.target.value});
-}
-
-  render() {
-  const { showClear, clearSearch } = this.props; 
+  const onChange = (e) => {
+    setText(e.target.value);
+  }
 
     return (
       <div>
-        <form onSubmit={this.onSubmit}>
-          <input type="text" name="text" placeholder="Search Users..." className="my-sm p-sm" value={this.state.text} onChange={this.onChange}/>
+        <form onSubmit={onSubmit}>
+          <input type="text" name="text" placeholder="Search Users..." className="my-sm p-sm" value={text} onChange={onChange}/>
           <input type="submit" value="Search" className="btn btn-dark btn-block p-sm" />
         </form>
         {showClear && 
@@ -37,7 +32,6 @@ onChange = (e) => {
     
       </div>
     )
-  }
 }
 
 Search.propTypes = {
