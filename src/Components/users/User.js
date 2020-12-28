@@ -1,17 +1,17 @@
-import React, { Fragment, Component } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Spinner from '../layout/Spinner';
 import Repos from '../repos/Repos';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-class User extends Component {
-  componentDidMount() {
-    this.props.getUser(this.props.match.params.login);
-    this.props.getUserRepos(this.props.match.params.login);
-  }
-  render() {
-    const { login, location, hireable, html_url, avatar_url, name, blog, bio, company, public_repos, public_gists, following, followers } = this.props.user;
-    const {loading, repos} = this.props;
+const User = (user, loading, repos, getUser, getUserRepos, match) => {
+  useEffect(() => {
+    getUser(match.params.login);
+    getUserRepos(match.params.login);
+    // eslint-disable-next-line
+  }, []);
+
+    const { login, location, hireable, html_url, avatar_url, name, blog, bio, company, public_repos, public_gists, following, followers } = user;
 
     if (loading) <Spinner />
 
@@ -70,7 +70,6 @@ class User extends Component {
         <Repos repos={repos}/>
       </Fragment>
     )
-  }
 }
 
 User.propTypes = {
