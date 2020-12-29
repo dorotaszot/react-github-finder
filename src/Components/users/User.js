@@ -4,7 +4,7 @@ import Repos from '../repos/Repos';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const User = (user, loading, repos, getUser, getUserRepos, match) => {
+const User = ({user, loading, repos, getUser, getUserRepos, match}) => {
   useEffect(() => {
     getUser(match.params.login);
     getUserRepos(match.params.login);
@@ -13,7 +13,7 @@ const User = (user, loading, repos, getUser, getUserRepos, match) => {
 
     const { login, location, hireable, html_url, avatar_url, name, blog, bio, company, public_repos, public_gists, following, followers } = user;
 
-    if (loading) <Spinner />
+    if (loading) return<Spinner />
 
     return (
         <Fragment>
