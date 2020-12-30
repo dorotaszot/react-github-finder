@@ -9,6 +9,8 @@ import Alert from './Components/layout/Alert';
 import About from './Components/pages/About';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import GithubState from './context/github/GithubState';
+
 
 const App = () => {
   const [users, setUsers] = useState([]);
@@ -70,30 +72,32 @@ const App = () => {
   }
 
     return (
-      <Router>
-      <div className="App">
-        <Navbar />
-        <div className="container">
-        <Alert alert={alert}/>
+      <GithubState>
+        <Router>
+        <div className="App">
+          <Navbar />
+          <div className="container">
+          <Alert alert={alert}/>
 
-            <Switch> 
-              <Route exact path ='/' render={props => (
-                <Fragment>
-                  <Search searchUsers={searchUsers} 
-                  clearSearch={clearSearch} 
-                  showClear={users.length > 0 ? true : false}
-                  setAlert={showAlert} />
-                  <Users loading={loading} users={users}/>
-               </Fragment>
+              <Switch> 
+                <Route exact path ='/' render={props => (
+                  <Fragment>
+                    <Search searchUsers={searchUsers} 
+                    clearSearch={clearSearch} 
+                    showClear={users.length > 0 ? true : false}
+                    setAlert={showAlert} />
+                    <Users loading={loading} users={users}/>
+                </Fragment>
+                )} />
+              </Switch>
+              <Route exact path='/about' component={About} />
+              <Route exact path='/user/:login' render= { props => (
+                <User {...props} user={user} getUser={getUser} loading={loading} getUserRepos={getUserRepos} repos={repos}/>
               )} />
-            </Switch>
-            <Route exact path='/about' component={About} />
-            <Route exact path='/user/:login' render= { props => (
-              <User {...props} user={user} getUser={getUser} loading={loading} getUserRepos={getUserRepos} repos={repos}/>
-            )} />
+          </div>
         </div>
-      </div>
-      </Router>
+        </Router>
+      </GithubState>
     );
 }
 
