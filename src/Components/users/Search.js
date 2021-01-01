@@ -27,8 +27,8 @@ const Search = ({showClear, clearSearch, setAlert}) => {
           <input type="text" name="text" placeholder="Search Users..." className="my-sm p-sm" value={text} onChange={onChange}/>
           <input type="submit" value="Search" className="btn btn-dark btn-block p-sm" />
         </form>
-        {showClear && 
-          <button className="btn btn-block btn-light p-sm my-sm" style={{ color: '#000'}} onClick={clearSearch}>
+        {githubContext.users.length > 0 && 
+          <button className="btn btn-block btn-light p-sm my-sm" style={{ color: '#000'}} onClick={githubContext.clearSearch}>
             Clear
           </button>
         }

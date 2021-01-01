@@ -49,11 +49,6 @@ const App = () => {
     console.log(res);
   } 
 
-  const clearSearch = () => {
-    setUsers([]);
-    setLoading(false);
-  }
-
   const showAlert = (msg, type) => {
     setAlert({msg, type});
     setTimeout(() => {
@@ -73,8 +68,6 @@ const App = () => {
                 <Route exact path ='/' render={props => (
                   <Fragment>
                     <Search  
-                    clearSearch={clearSearch} 
-                    showClear={users.length > 0 ? true : false}
                     setAlert={showAlert} />
                     <Users />
                 </Fragment>
