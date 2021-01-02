@@ -7,15 +7,10 @@ import './App.css';
 import Navbar from './Components/layout/Navbar';
 import Alert from './Components/layout/Alert';
 import About from './Components/pages/About';
-import axios from 'axios';
-import PropTypes from 'prop-types';
 import GithubState from './context/github/GithubState';
 
 
 const App = () => {
-
-  const [repos, setRepos] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);
 
   // async componentDidMount() {
@@ -27,16 +22,6 @@ const App = () => {
   //   this.setState({users: res.data, loading: false});
   // }
 
-
-  const getUserRepos = async (username) => {
-    setLoading(true);
-
-    const res = await axios.get(`https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
-
-    setRepos(res.data);
-    setLoading(false)
-    console.log(res);
-  } 
 
   const showAlert = (msg, type) => {
     setAlert({msg, type});
@@ -61,11 +46,10 @@ const App = () => {
                     <Users />
                 </Fragment>
                 )} />
-              </Switch>
+              
               <Route exact path='/about' component={About} />
-              <Route exact path='/user/:login' render= { props => (
-                <User {...props} getUserRepos={getUserRepos} repos={repos}/>
-              )} />
+              <Route exact path='/user/:login' component={User}/>
+              </Switch>
           </div>
         </div>
         </Router>
@@ -73,8 +57,5 @@ const App = () => {
     );
 }
 
-Search.propTypes = {
-  searchUsers: PropTypes.func.isRequired,
-}
 
 export default App;
