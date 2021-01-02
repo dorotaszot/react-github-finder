@@ -1,11 +1,14 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import GithubContext from '../../context/github/githubContext';
+import AlertContext from '../../context/alert/alertContext';
 
-const Search = ({showClear, clearSearch, setAlert}) => {
+const Search = () => {
   const githubContext = useContext(GithubContext);
+  const alertContext = useContext(AlertContext);
 
-    const [text, setText] = useState('');
+  const {setAlert} = alertContext;
+  const [text, setText] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();

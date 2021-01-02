@@ -14,7 +14,7 @@ const User = ({ match}) => {
     // eslint-disable-next-line 
   }, []);
 
-    const { login, location, hireable, html_url, avatar_url, name, blog, bio, dcompany, public_repos, public_gists, following, followers } = user;
+    const { login, location, hireable, html_url, avatar_url, name, blog, bio, company, public_repos, public_gists, following, followers } = user;
 
     if (loading) return<Spinner />
 
