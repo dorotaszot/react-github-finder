@@ -40,10 +40,4 @@ const Search = () => {
     )
 }
 
-Search.propTypes = {
-  clearSearch: PropTypes.func.isRequired,
-  showClear: PropTypes.bool.isRequired,
-  setAlert: PropTypes.func.isRequired
-}
-
 export default Search
